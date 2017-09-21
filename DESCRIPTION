@@ -19,4 +19,6 @@ Imports:
     combinat,
     magrittr
 LinkingTo: Rcpp
+NeedsCompilation: yes
+SystemRequirements: C++11
 RoxygenNote: 6.0.1

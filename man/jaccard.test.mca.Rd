@@ -4,8 +4,8 @@
 \alias{jaccard.test.mca}
 \title{Compute p-value using the Measure Concentration Algorithm}
 \usage{
-jaccard.test.mca(x, y, px = NULL, py = NULL, verbose = TRUE,
-  accuracy = 1e-05, error.type = "average")
+jaccard.test.mca(x, y, px = NULL, py = NULL, accuracy = 1e-05,
+  error.type = "average", verbose = TRUE)
 }
 \arguments{
 \item{x}{a binary vector (e.g., fingerprint)}
@@ -16,11 +16,11 @@ jaccard.test.mca(x, y, px = NULL, py = NULL, verbose = TRUE,
 
 \item{py}{probability of successes in \code{y} (optional)}
 
-\item{verbose}{whether to print progress messages}
-
 \item{accuracy}{an error bound on approximating a multinomial distribution}
 
 \item{error.type}{an error type on approximating a multinomial distribution ("average", "upper", "lower")}
+
+\item{verbose}{whether to print progress messages}
 }
 \value{
 \code{jaccard.test.mca} returns a list consisting of
