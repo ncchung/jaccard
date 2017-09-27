@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // jaccard_mca_rcpp
-double jaccard_mca_rcpp(const double px, const double py, const int m, const double T_observed, const double accuracy);
+Rcpp::List jaccard_mca_rcpp(const double px, const double py, const int m, const double T_observed, const double accuracy);
 RcppExport SEXP _jaccard_jaccard_mca_rcpp(SEXP pxSEXP, SEXP pySEXP, SEXP mSEXP, SEXP T_observedSEXP, SEXP accuracySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -21,7 +21,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // jaccard_mca_rcpp_known_p
-double jaccard_mca_rcpp_known_p(const double px, const double py, const int m, const double T_observed, const double accuracy);
+Rcpp::List jaccard_mca_rcpp_known_p(const double px, const double py, const int m, const double T_observed, const double accuracy);
 RcppExport SEXP _jaccard_jaccard_mca_rcpp_known_p(SEXP pxSEXP, SEXP pySEXP, SEXP mSEXP, SEXP T_observedSEXP, SEXP accuracySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

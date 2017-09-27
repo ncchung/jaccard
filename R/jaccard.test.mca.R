@@ -40,13 +40,25 @@ jaccard.test.mca <- function(x, y, px = NULL, py = NULL, accuracy = 1e-05, error
   expectation <- (px * py)/(px + py - px * py)
   j.obs <- sum(x & y)/sum(x | y) - expectation
   
-    
-  if (null.p) {
-    pvalue = jaccard_mca_rcpp_known_p(px,py,m,j.obs,accuracy)
-  } else {
-    pvalue = jaccard_mca_rcpp(px,py,m,j.obs,accuracy)
+  if(px==1 | py==1 | sum(x) == length(x) | sum(y) == length(y)) {
+    warning("One or both input vectors contain only 1's.")
+    degenerate == TRUE
   }
-  epsilon = 1- accuracy  
+  if(px==0 | py==0 | sum(x) == 0 | sum(y) == 0) {
+    warning("One or both input vectors contain only 0's")
+    degenerate == TRUE
+  }
+  if(isTRUE(degenerate)) {
+    return(list(statistics = 0, pvalue = 1, expectation = expectation))
+  }
+    
+  if (!null.p) {
+    tan = jaccard_mca_rcpp_known_p(px,py,m,j.obs,accuracy)
+    pvalue = tan$pvalue
+  } else {
+    tan = jaccard_mca_rcpp(px,py,m,j.obs,accuracy)
+    pvalue = tan$pvalue
+  }
   pvalue <- switch(error.type, lower = pvalue, average = pvalue/epsilon, 
                    upper = pvalue + 1 - epsilon)
 
@@ -55,7 +67,7 @@ jaccard.test.mca <- function(x, y, px = NULL, py = NULL, accuracy = 1e-05, error
       statistics = j.obs,
       pvalue = pvalue,
       expectation = expectation,
-      accuracy = accuracy,
+      accuracy = 1- tan$accuracy,
       error.type = error.type
       )
   )

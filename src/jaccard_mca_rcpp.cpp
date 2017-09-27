@@ -19,13 +19,7 @@ using namespace Rcpp;
 #include <unordered_set>
 #include <algorithm>
 
-
-
-
 typedef int* Conf;
-
-
-// static inline double logFactorial(int n) { return lgamma(n+1); }
 
 
 double* getLFactorials(int howmany)
@@ -69,7 +63,7 @@ public:
   {
     double  res = 0.0;
     
-    for(int i=0; i < isotopeNo; i++)
+    for(unsigned int i=0; i < isotopeNo; i++)
     {
       res -= lfactorials[conf[i]];
       res += conf[i] * atom_lProbs[i];
@@ -85,14 +79,14 @@ void Marginal::setupInitialConf(const double* probs)
 {
   Conf res = mode_conf;
   
-  for(int i = 0; i < isotopeNo; ++i )
+  for(unsigned int i = 0; i < isotopeNo; ++i )
   {
     res[i] = int( atomCnt * probs[i] ) + 1;
   }
   
   int s = 0;
   
-  for(int i = 0; i < isotopeNo; ++i) s += res[i];
+  for(unsigned int i = 0; i < isotopeNo; ++i) s += res[i];
   
   int diff = atomCnt - s;
   
@@ -128,8 +122,8 @@ void Marginal::setupInitialConf(const double* probs)
   while(modified)
   {
     modified = false;
-    for(int ii = 0; ii<isotopeNo; ii++)
-      for(int jj = 0; jj<isotopeNo; jj++)
+    for(unsigned int ii = 0; ii<isotopeNo; ii++)
+      for(unsigned int jj = 0; jj<isotopeNo; jj++)
         if(ii != jj and res[ii] > 0)
         {
           res[ii]--;
@@ -348,7 +342,6 @@ class LayeredMarginal : public Marginal
   std::vector<Conf> configurations;
   std::vector<Conf> fringe;
   Allocator<int> allocator;
-  unsigned int sorted_up_to_idx;
   const ConfEqual equalizer;
   const KeyHasher keyHasher;
   const ConfOrderMarginalDescending orderMarginal;
@@ -375,7 +368,7 @@ public:
 
 
 LayeredMarginal::LayeredMarginal(Marginal&& m, int tabSize, int _hashSize)
-  : Marginal(std::move(m)), new_threshold(1.0), allocator(isotopeNo, tabSize), sorted_up_to_idx(0),
+  : Marginal(std::move(m)), new_threshold(1.0), allocator(isotopeNo, tabSize),
     equalizer(isotopeNo), keyHasher(isotopeNo), orderMarginal(this), hashSize(_hashSize),
     visited(hashSize,keyHasher,equalizer)
 {
@@ -477,8 +470,9 @@ public:
 
 
 
+
 //[[Rcpp::export]]
-double jaccard_mca_rcpp(const double px,const double py, const int m, const double T_observed, const double accuracy = 1e-05 )
+Rcpp::List jaccard_mca_rcpp(const double px,const double py, const int m, const double T_observed, const double accuracy = 1e-05 )
 {
     double probs[] = {px*py, px*(1-py), py*(1-px),(1-px)*(1-py)}; // (1,1), (1,0), (0,1), (0,0)
     LayeredMarginal LM(Marginal(probs, 4, m));
@@ -506,7 +500,7 @@ double jaccard_mca_rcpp(const double px,const double py, const int m, const doub
               current_statistic=(double)(current_conf[0])/(double)(m-current_conf[3])-current_pxpy/(current_px+current_py-current_pxpy);
             }
             //std::cout << exp(LM.get_lProb()) << "\t" << fabs(current_statistic) << std::endl;
-          //  std::cout << exp(LM.get_lProb()) << "\t" <<current_conf[0] << "\t" <<current_conf[1] << "\t" << current_conf[2] << "\t"<<current_conf[3] << "\t"<< fabs(current_statistic) << "\t"<< current_py << "\t"<< current_px << std::endl;
+            //std::cout << exp(LM.get_lProb()) << "\t" <<current_conf[0] << "\t" <<current_conf[1] << "\t" << current_conf[2] << "\t"<<current_conf[3] << "\t"<< fabs(current_statistic) << "\t"<< current_py << "\t"<< current_px << std::endl;
             if(fabs(current_statistic)>=fabs(T_observed)){
               
               out.add(exp(LM.get_lProb()));
@@ -516,12 +510,14 @@ double jaccard_mca_rcpp(const double px,const double py, const int m, const doub
         }
         current_threshold -= 0.8;
     }
-    return out.get(); 
+    return Rcpp::List::create(Rcpp::Named("pvalue") = out.get(),
+                              Rcpp::Named("accuracy") = s.get()
+                                ); 
 }
 
 
 //[[Rcpp::export]]
-double jaccard_mca_rcpp_known_p(const double px,const double py, const int m, const double T_observed, const double accuracy = 1e-05 )
+Rcpp::List jaccard_mca_rcpp_known_p(const double px,const double py, const int m, const double T_observed, const double accuracy = 1e-05 )
 {
   double probs[] = {px*py, px*(1-py), py*(1-px),(1-px)*(1-py)}; // (1,1), (1,0), (0,1), (0,0)
   LayeredMarginal LM(Marginal(probs, 4, m));
@@ -546,7 +542,7 @@ double jaccard_mca_rcpp_known_p(const double px,const double py, const int m, co
           current_statistic=(double)(current_conf[0])/(double)(m-current_conf[3])-expectation;
       }
       //std::cout << exp(LM.get_lProb()) << "\t" << fabs(current_statistic) << std::endl;
-      //  std::cout << exp(LM.get_lProb()) << "\t" <<current_conf[0] << "\t" <<current_conf[1] << "\t" << current_conf[2] << "\t"<<current_conf[3] << "\t"<< fabs(current_statistic) << "\t"<< current_py << "\t"<< current_px << std::endl;
+      //std::cout << exp(LM.get_lProb()) << "\t" <<current_conf[0] << "\t" <<current_conf[1] << "\t" << current_conf[2] << "\t"<<current_conf[3] << "\t"<< fabs(current_statistic) << "\t"<< current_py << "\t"<< current_px << std::endl;
       if(fabs(current_statistic)>=fabs(T_observed)){
         
         out.add(exp(LM.get_lProb()));
@@ -556,5 +552,10 @@ double jaccard_mca_rcpp_known_p(const double px,const double py, const int m, co
     }
     current_threshold -= 0.8;
   }
-  return out.get(); 
+  return Rcpp::List::create(Rcpp::Named("pvalue") = out.get(),
+                            Rcpp::Named("accuracy") = s.get()
+  );  
 }
+
+
+
