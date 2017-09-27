@@ -17,6 +17,7 @@
 #' \item{expectation}{expectation}
 #'
 #' @importFrom stats rbinom pchisq rnorm runif
+#' @importFrom qvalue empPvals
 #' @export jaccard.test.bootstrap
 #'
 #' @examples
@@ -30,7 +31,27 @@ jaccard.test.bootstrap <- function(x, y, px = NULL, py = NULL, verbose=TRUE, fix
   if(length(x) != length(y)) stop("Length mismatch")
   m <- length(x)
 
+  # probabilities of ones
+  if(is.null(px) | is.null(py)){
+    px <- mean(x)
+    py <- mean(y)
+  }
+
+  expectation <- jaccard.ev(x, y, px=px, py=py)
   j.obs <- jaccard(x, y, center=TRUE, px=px, py=py)
+
+  if(px==1 | py==1 | sum(x) == length(x) | sum(y) == length(y)) {
+    warning("One or both input vectors contain only 1's.")
+    degenerate <- TRUE
+  }
+  if(px==0 | py==0 | sum(x) == 0 | sum(y) == 0) {
+    warning("One or both input vectors contain only 0's")
+    degenerate <- TRUE
+  }
+  if(exists("degenerate") & isTRUE(degenerate)) {
+    return(list(statistics = 0, pvalue = 1, expectation = expectation))
+  }
+
   j.null <- vector("numeric",B)
   if(verbose) message("Bootstrap Procedures : ")
   for(i in 1:B) {
@@ -54,6 +75,6 @@ jaccard.test.bootstrap <- function(x, y, px = NULL, py = NULL, verbose=TRUE, fix
       statistics = j.obs,
       statistics.null = j.null,
       pvalue = pvalue,
-      expectation = jaccard.ev(x, y, px=px, py=py))
+      expectation = expectation)
   )
 }

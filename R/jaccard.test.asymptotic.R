@@ -36,8 +36,20 @@ jaccard.test.asymptotic <- function(x, y, px = NULL, py = NULL, verbose = TRUE) 
   x <- as.logical(x)
   y <- as.logical(y)
 
-  expectation <- (px*py)/(px+py-px*py)
+  expectation <- jaccard.ev(x, y, px=px, py=py)
   j <- sum(x&y)/sum(x|y) - expectation
+  
+  if(px==1 | py==1 | sum(x) == length(x) | sum(y) == length(y)) {
+    warning("One or both input vectors contain only 1's.")
+    degenerate <- TRUE
+  }
+  if(px==0 | py==0 | sum(x) == 0 | sum(y) == 0) {
+    warning("One or both input vectors contain only 0's")
+    degenerate <- TRUE
+  }
+  if(exists("degenerate") & isTRUE(degenerate)) {
+    return(list(statistics = 0, pvalue = 1, expectation = expectation))
+  }
 
   q <- c(px*py,px+py-2*px*py)
   qq <- q[1]+q[2]

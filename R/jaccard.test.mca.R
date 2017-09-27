@@ -37,18 +37,18 @@ jaccard.test.mca <- function(x, y, px = NULL, py = NULL, accuracy = 1e-05, error
    
   x <- as.logical(x)
   y <- as.logical(y)
-  expectation <- (px * py)/(px + py - px * py)
+  expectation <- jaccard.ev(x, y, px=px, py=py)
   j.obs <- sum(x & y)/sum(x | y) - expectation
   
   if(px==1 | py==1 | sum(x) == length(x) | sum(y) == length(y)) {
     warning("One or both input vectors contain only 1's.")
-    degenerate == TRUE
+    degenerate <- TRUE
   }
   if(px==0 | py==0 | sum(x) == 0 | sum(y) == 0) {
     warning("One or both input vectors contain only 0's")
-    degenerate == TRUE
+    degenerate <- TRUE
   }
-  if(isTRUE(degenerate)) {
+  if(exists("degenerate") & isTRUE(degenerate)) {
     return(list(statistics = 0, pvalue = 1, expectation = expectation))
   }
     
