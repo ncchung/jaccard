@@ -29,14 +29,15 @@ jaccard.test.mca <- function(x, y, px = NULL, py = NULL, accuracy = 1e-05, error
   if (length(x) != length(y)) stop("Length mismatch")
   m <- length(x)
   null.p<-FALSE
+  x <- as.logical(x)
+  y <- as.logical(y)
   if (is.null(px) | is.null(py)) {
     px <- mean(x)
     py <- mean(y)
     null.p <- TRUE
   }
-   
-  x <- as.logical(x)
-  y <- as.logical(y)
+  degenerate <- TRUE
+  
   expectation <- jaccard.ev(x, y, px=px, py=py)
   j.obs <- sum(x & y)/sum(x | y) - expectation
   

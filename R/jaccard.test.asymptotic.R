@@ -25,16 +25,17 @@ jaccard.test.asymptotic <- function(x, y, px = NULL, py = NULL, verbose = TRUE) 
   # length of fingerprints
   if(length(x) != length(y)) stop("Length mismatch")
   m <- length(x)
-
+  #converting x,y to bool
+  x <- as.logical(x)
+  y <- as.logical(y)
   # probabilities of ones
   if(is.null(px) | is.null(py)){
     px <- mean(x)
     py <- mean(y)
   }
+  degenerate<-FALSE
 
-  #converting x,y to bool
-  x <- as.logical(x)
-  y <- as.logical(y)
+
 
   expectation <- jaccard.ev(x, y, px=px, py=py)
   j <- sum(x&y)/sum(x|y) - expectation
