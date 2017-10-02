@@ -34,9 +34,6 @@ jaccard.test.asymptotic <- function(x, y, px = NULL, py = NULL, verbose = TRUE) 
     py <- mean(y)
   }
   degenerate<-FALSE
-
-
-
   expectation <- jaccard.ev(x, y, px=px, py=py)
   j <- sum(x&y)/sum(x|y) - expectation
   
@@ -48,7 +45,7 @@ jaccard.test.asymptotic <- function(x, y, px = NULL, py = NULL, verbose = TRUE) 
     warning("One or both input vectors contain only 0's")
     degenerate <- TRUE
   }
-  if(exists("degenerate")) {
+  if(isTrue(degenerate)) {
     return(list(statistics = 0, pvalue = 1, expectation = expectation))
   }
 

@@ -47,7 +47,7 @@ jaccard.test.exact <- function(x, y, px = NULL, py = NULL, verbose = TRUE) {
     warning("One or both input vectors contain only 0's")
     degenerate <- TRUE
   }
-  if(exists("degenerate")) {
+  if(isTrue(degenerate)) {
     return(list(statistics = 0, pvalue = 1, expectation = expectation))
   }
     
