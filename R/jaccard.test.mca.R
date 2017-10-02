@@ -19,27 +19,34 @@
 #' @importFrom IsoSpecR IsoSpecify
 #' @export jaccard.test.mca
 #' @useDynLib jaccard
-#' 
+#'
 #' @examples
 #' set.seed(1234)
 #' x = rbinom(100,1,.5)
 #' y = rbinom(100,1,.5)
-#' jaccard.test.mca(x,y)
+#' jaccard.test.mca(x,y,accuracy = 1e-05)
 jaccard.test.mca <- function(x, y, px = NULL, py = NULL, accuracy = 1e-05, error.type = "average", verbose = TRUE) {
   if (length(x) != length(y)) stop("Length mismatch")
   m <- length(x)
   null.p<-FALSE
+  x <- as.logical(x)
+  y <- as.logical(y)
   if (is.null(px) | is.null(py)) {
     px <- mean(x)
     py <- mean(y)
     null.p <- TRUE
   }
-   
+<<<<<<< HEAD
+
   x <- as.logical(x)
   y <- as.logical(y)
+=======
+  degenerate <- TRUE
+  
+>>>>>>> 4c4885b7befbbeb425747efb9b35729456d41bd3
   expectation <- jaccard.ev(x, y, px=px, py=py)
   j.obs <- sum(x & y)/sum(x | y) - expectation
-  
+
   if(px==1 | py==1 | sum(x) == length(x) | sum(y) == length(y)) {
     warning("One or both input vectors contain only 1's.")
     degenerate <- TRUE
@@ -48,10 +55,10 @@ jaccard.test.mca <- function(x, y, px = NULL, py = NULL, accuracy = 1e-05, error
     warning("One or both input vectors contain only 0's")
     degenerate <- TRUE
   }
-  if(exists("degenerate") & isTRUE(degenerate)) {
+  if(exists("degenerate")) {
     return(list(statistics = 0, pvalue = 1, expectation = expectation))
   }
-    
+
   if (!null.p) {
     tan = jaccard_mca_rcpp_known_p(px,py,m,j.obs,accuracy)
     pvalue = tan$pvalue
@@ -59,15 +66,15 @@ jaccard.test.mca <- function(x, y, px = NULL, py = NULL, accuracy = 1e-05, error
     tan = jaccard_mca_rcpp(px,py,m,j.obs,accuracy)
     pvalue = tan$pvalue
   }
-  pvalue <- switch(error.type, lower = pvalue, average = pvalue/epsilon, 
-                   upper = pvalue + 1 - epsilon)
+  pvalue <- switch(error.type, lower = pvalue, average = pvalue/tan$accuracy,
+                   upper = pvalue + 1 - tan$accuracy)
 
   return(
     list(
       statistics = j.obs,
       pvalue = pvalue,
       expectation = expectation,
-      accuracy = 1- tan$accuracy,
+      accuracy = 1 - tan$accuracy,
       error.type = error.type
       )
   )

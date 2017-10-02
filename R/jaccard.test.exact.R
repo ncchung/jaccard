@@ -27,14 +27,15 @@ jaccard.test.exact <- function(x, y, px = NULL, py = NULL, verbose = TRUE) {
   if (length(x) != length(y)) stop("Length mismatch")
   m <- length(x)
   null.p<-FALSE
+  x <- as.logical(x)
+  y <- as.logical(y)
   if (is.null(px) | is.null(py)) {
     px <- mean(x)
     py <- mean(y)
     null.p <- TRUE    
   }
+  degenrate<-FALSE
   
-  x <- as.logical(x)
-  y <- as.logical(y)
   expectation <- jaccard.ev(x, y, px=px, py=py)
   j.obs <- sum(x & y)/sum(x | y) - expectation
   
@@ -46,7 +47,7 @@ jaccard.test.exact <- function(x, y, px = NULL, py = NULL, verbose = TRUE) {
     warning("One or both input vectors contain only 0's")
     degenerate <- TRUE
   }
-  if(exists("degenerate") & isTRUE(degenerate)) {
+  if(exists("degenerate")) {
     return(list(statistics = 0, pvalue = 1, expectation = expectation))
   }
     

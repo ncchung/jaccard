@@ -35,5 +35,5 @@ Compute statistical significance of Jaccard/Tanimoto similarity coefficients.
 set.seed(1234)
 x = rbinom(100,1,.5)
 y = rbinom(100,1,.5)
-jaccard.test.mca(x,y)
+jaccard.test.mca(x,y,accuracy = 1e-05)
 }

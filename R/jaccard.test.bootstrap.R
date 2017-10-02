@@ -39,7 +39,7 @@ jaccard.test.bootstrap <- function(x, y, px = NULL, py = NULL, verbose=TRUE, fix
 
   expectation <- jaccard.ev(x, y, px=px, py=py)
   j.obs <- jaccard(x, y, center=TRUE, px=px, py=py)
-
+  degenerate <- FALSE
   if(px==1 | py==1 | sum(x) == length(x) | sum(y) == length(y)) {
     warning("One or both input vectors contain only 1's.")
     degenerate <- TRUE
@@ -48,7 +48,7 @@ jaccard.test.bootstrap <- function(x, y, px = NULL, py = NULL, verbose=TRUE, fix
     warning("One or both input vectors contain only 0's")
     degenerate <- TRUE
   }
-  if(exists("degenerate") & isTRUE(degenerate)) {
+  if(exists("degenerate")) {
     return(list(statistics = 0, pvalue = 1, expectation = expectation))
   }
 
