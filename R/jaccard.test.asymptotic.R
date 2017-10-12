@@ -45,7 +45,7 @@ jaccard.test.asymptotic <- function(x, y, px = NULL, py = NULL, verbose = TRUE) 
     warning("One or both input vectors contain only 0's")
     degenerate <- TRUE
   }
-  if(isTrue(degenerate)) {
+  if(degenerate) {
     return(list(statistics = 0, pvalue = 1, expectation = expectation))
   }
 

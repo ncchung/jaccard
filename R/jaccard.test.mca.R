@@ -16,7 +16,6 @@
 #' \item{expectation}{expectation}
 #'
 #' @importFrom stats rbinom pchisq rnorm runif
-#' @importFrom IsoSpecR IsoSpecify
 #' @export jaccard.test.mca
 #' @useDynLib jaccard
 #'
@@ -39,7 +38,7 @@ jaccard.test.mca <- function(x, y, px = NULL, py = NULL, accuracy = 1e-05, error
 
   x <- as.logical(x)
   y <- as.logical(y)
-  degenerate <- TRUE
+  degenerate <- FALSE
 
   expectation <- jaccard.ev(x, y, px=px, py=py)
   j.obs <- sum(x & y)/sum(x | y) - expectation
@@ -52,7 +51,7 @@ jaccard.test.mca <- function(x, y, px = NULL, py = NULL, accuracy = 1e-05, error
     warning("One or both input vectors contain only 0's")
     degenerate <- TRUE
   }
-  if(isTrue(degenerate)) {
+  if(degenerate) {
     return(list(statistics = 0, pvalue = 1, expectation = expectation))
   }
 
