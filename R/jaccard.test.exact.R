@@ -32,7 +32,7 @@ jaccard.test.exact <- function(x, y, px = NULL, py = NULL, verbose = TRUE) {
     py <- mean(y)
     null.p <- TRUE    
   }
-  degenrate<-FALSE
+  degenerate<-FALSE
   
   expectation <- jaccard.ev(x, y, px=px, py=py)
   j.obs <- sum(x & y)/sum(x | y) - expectation
