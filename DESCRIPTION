@@ -4,7 +4,7 @@ Title: Testing similarity between binary datasets using Jaccard/Tanimoto coeffic
 Version: 0.1.0
 Date: 2017-09-04
 Author: Neo Christopher Chung <nchchung@gmail.com>, Błażej Miasojedow
-    <bmiasojedow@gmail.com>
+    <bmiasojedow@gmail.com>, Michał Startek <M.Startek@mimuw.edu.pl>
 Maintainer: Neo Christopher Chung <nchchung@gmail.com>
 Description: Calculate statistical significance of Jaccard/Tanimoto similarity
     coefficients.
@@ -13,10 +13,8 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     Rcpp (>= 0.12.6),
-    IsoSpecR,
     qvalue,
     dplyr,
-    combinat,
     magrittr
 LinkingTo: Rcpp
 NeedsCompilation: yes
