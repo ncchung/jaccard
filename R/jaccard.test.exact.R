@@ -14,8 +14,6 @@
 #' \item{expectation}{expectation}
 #'
 #' @importFrom stats rbinom pchisq rnorm runif
-#' @importFrom combinat dmnom xsimplex nsimplex
-#' @import magrittr
 #' @export jaccard.test.exact
 #'
 #' @examples
@@ -34,7 +32,7 @@ jaccard.test.exact <- function(x, y, px = NULL, py = NULL, verbose = TRUE) {
     py <- mean(y)
     null.p <- TRUE    
   }
-  degenrate<-FALSE
+  degenerate<-FALSE
   
   expectation <- jaccard.ev(x, y, px=px, py=py)
   j.obs <- sum(x & y)/sum(x | y) - expectation
@@ -47,7 +45,7 @@ jaccard.test.exact <- function(x, y, px = NULL, py = NULL, verbose = TRUE) {
     warning("One or both input vectors contain only 0's")
     degenerate <- TRUE
   }
-  if(isTrue(degenerate)) {
+  if(degenerate) {
     return(list(statistics = 0, pvalue = 1, expectation = expectation))
   }
     
