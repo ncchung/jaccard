@@ -1,0 +1,178 @@
+libs=c("ggplot2",  "plyr", "corpcor", "reshape2", "survival", "gam", "jackstraw", "pma", "sqldf", "forecast", "stringr", "RMySQL", "RSQLite", "lubridate", "qcc", "sas7bdat")#
+#
+type=getOption("pkgType")                           #
+    CheckInstallPackage <- function(packages, repos="http://cran.r-project.org",#
+       depend=c("Depends", "Imports", "LinkingTo", "Suggests", "Enhances"), ...) {#
+         installed=as.data.frame(installed.packages())#
+    for(p in packages) {#
+        if(is.na(charmatch(p, installed[,1]))) { #
+          install.packages(p, repos=repos, dependencies=depend, ...) #
+                    }#
+      }#
+    } #
+    CheckInstallPackage(packages=libs)
+install.packages("svn")
+install.packages("sva")
+source("http://bioconductor.org/biocLite.R")#
+biocLite("sva")
+install.packages("fastcox")
+install.packages("mgcv")
+install.packages("Matrix")
+install.packages("MASS")
+library(kinship2)
+?read.tab
+?read.delim
+library(mgcv)
+memory.size()
+my.list <- vector(’list’, 10)
+my.list
+my.list = vector("list",10)
+my.list
+chrlist = c(1:29,"X")
+genomes.list = vector("list", length(chrlist))
+genomes.list
+names(genomes.list)
+names(genomes.list) = chrlist
+genomes.list
+genomes.list[[29]]
+genomes.list[['X']]
+genomes.list[['1']]
+genomes.list[['1']] <- matrx(100,10)
+genomes.list[['1']] <- matrx(rnorm(100),10)
+genomes.list[['1']] <- matrix(rnorm(100),10)
+genomes.list[['1']]
+genomes.list[['X']] <- matrix(rnorm(100),10)
+genomes.list[['X']]
+genomes.list[['1']]
+genomes.list[['2']]
+genomes.list[[chrlist[1]]]
+genomes.list[[chrlist[29]]]
+genomes.list[['X']]
+chrlist[29]
+chrlist[30]
+genomes.list[[chrlist[30]]]
+dfd
+cor
+4893/10
+floor(DEPRECATED)
+floor(56243532/10)
+floor(1001)
+floor(1001,10)
+?floor
+round(12312,1000)
+trunc(11212,100)
+trunc(11212,10022)
+trunc(11212.12131,10)
+trunc(11212.12131,2)
+trunc(11212.12131,4)
+version
+update.packages(checkBuilt=TRUE,ask=FALSE)
+packages.installed()
+package.installed()
+version
+update.packages(checkBuilt=TRUE,ask=FALSE)
+install.packages()
+installed.packages()
+colnames(installed.packages())
+xp = NULL
+xp[,1]
+xp[1,1]
+xp[1,]
+getp <- function(lr,lr0) {#
+  # Get resampled p-values, pulling across variables (e.g., genes)#
+  # lr: observed statistics#
+  # lr0: null statistics (i.e. from resampled residuals)#
+  m = length(lr)#
+  v = c(rep(TRUE,m),rep(FALSE,length(lr0)))#
+  v = v[rev(order(c(lr,lr0)))]#
+  u = 1:length(v)#
+  w = 1:m#
+  p = ((u[v==TRUE]-w))/(length(lr0))#
+  #to account for the extreme observed values #
+  #p = ((u[v==TRUE]-w)+1)/(length(lr0)+2)#
+  p = p[rank(-lr, ties.method = "average")]#
+  return(p)#
+}
+lr = c(-1000,1,2,1000)
+lr0 = c(-2,-1,0,1,2,3,4,5,6,7)
+getp(lr,lr0)
+getp <- function(lr,lr0) {#
+  # Get resampled p-values, pulling across variables (e.g., genes)#
+  # lr: observed statistics#
+  # lr0: null statistics (i.e. from resampled residuals)#
+  m = length(lr)#
+  v = c(rep(TRUE,m),rep(FALSE,length(lr0)))#
+  v = v[rev(order(c(lr,lr0)))]#
+  u = 1:length(v)#
+  w = 1:m#
+  #p = ((u[v==TRUE]-w))/(length(lr0))#
+  #to account for the extreme observed values #
+  p = ((u[v==TRUE]-w)+1)/(length(lr0)+2)#
+  p = p[rank(-lr, ties.method = "average")]#
+  return(p)#
+}
+getp(lr,lr0)
+1/length(lr0)
+1/(length(lr0)+length(lr))
+?multi
+?multinorm
+?rmultinorm
+?rmulti
+?dmulti
+??multinomial
+?xsimplex
+library(combinat)
+?xsimplex
+install.packages("RCurl")
+library(tanimoto)
+tanimoto.test.exact
+library(tanimoto)
+tanimoto.test.bootstrap
+library(Hmisc)#
+library(car)#
+#
+mydf=df#
+set.seed(12345)#
+mydf[,2:5] = sapply(mydf[,2:5],jitter,amount=15)#
+mydf=mydf[c(1:10,20:29,39:48,58:67),]
+mydf
+?rcorr
+dlply
+?dlply
+setwd("~/Downloads/tanimoto-shiny/")
+dat=read.csv("NullDat.csv")
+dat
+dat = as.matrix(dat)
+dat
+dat2=read.csv("BirdSpecies.csv")
+dat2
+?
+read.csv
+dat2=read.csv("BirdSpecies.csv",row.names=1)
+dat2
+dat2=read.csv("BirdSpecies.csv",row.names=TRUE)
+dat2
+?tanimoto.test.mca
+library(tanimoto)
+?tanimoto.test.mca
+tanimoto.test.mca
+tanimoto.test.pairwise
+dataset = read.csv("BirdSpecies.csv")
+dataset = read.csv("BirdSpecies.csv",row.names=1)
+dataset = as.matrix(dataset)
+dataset
+out = tanimoto.test.pairwise(dataset, method="mca")
+library(qvalue)
+out = tanimoto.test.pairwise(dataset, method="mca")
+attributes(out)
+hist(out$pvalues)
+hist(out$qvalues)
+tanimoto.test.pairwise
+hist(out$expectation)
+dataset = read.csv("NullDat.csv",row.names=1)
+dataset
+dataset = as.matrix(dataset)
+out = tanimoto.test.pairwise(dataset, method="mca")
+out
+tanimoto.test.pairwise
+tanimoto.test.bootstrap

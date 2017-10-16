@@ -15,7 +15,8 @@ Imports:
     Rcpp (>= 0.12.6),
     qvalue,
     dplyr,
-    magrittr
+    magrittr,
+    shiny
 LinkingTo: Rcpp
 NeedsCompilation: yes
 SystemRequirements: C++11
