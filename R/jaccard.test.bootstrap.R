@@ -60,11 +60,11 @@ jaccard.test.bootstrap <- function(x, y, px = NULL, py = NULL, verbose=TRUE, fix
     }
 
     if(fix == "x") {
-      j.null[i] <- jaccard(x, sample(y, replace=TRUE), center=TRUE, px=px, py=py)
+      j.null[i] <- jaccard(x, sample(y, replace=TRUE), center=TRUE)
     } else if(fix == "y") {
-      j.null[i] <- jaccard(sample(x, replace=TRUE), y, center=TRUE, px=px, py=py)
+      j.null[i] <- jaccard(sample(x, replace=TRUE), y, center=TRUE)
     } else {
-      j.null[i] <- jaccard(sample(x, replace=TRUE), sample(y, replace=TRUE), center=TRUE, px=px, py=py)
+      j.null[i] <- jaccard(sample(x, replace=TRUE), sample(y, replace=TRUE), center=TRUE)
     }
   }
 
