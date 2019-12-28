@@ -4,6 +4,10 @@ This R package enables statistical testing of similarity between binary data usi
 
 We provide 4 methods of computing statistical significance of such similarity coefficients for binary data: the exact solution, the asymptotic approximation, the bootstrap method, and the measure concentration algorithm. We recommand using either the bootstrap method or the measure concentration algorithm, since the exact solution can be slow and the asymptotic approximation could be inaccurate depending on the data size.
 
+# Reference
+
+Chung, N., Miasojedow, B., Startek, M. et al. "Jaccard/Tanimoto similarity test and estimation methods for biological presence-absence data" BMC Bioinformatics (2019) 20(Suppl 15): 644. https://doi.org/10.1186/s12859-019-3118-5
+
 # Basic Usage
 
 To install this package:
