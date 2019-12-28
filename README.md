@@ -6,7 +6,7 @@ We provide 4 methods of computing statistical significance of such similarity co
 
 # Reference
 
-Chung, N., Miasojedow, B., Startek, M. et al. "Jaccard/Tanimoto similarity test and estimation methods for biological presence-absence data" BMC Bioinformatics (2019) 20(Suppl 15): 644. https://doi.org/10.1186/s12859-019-3118-5
+Chung, N., Miasojedow, B., Startek, M., and Gambin, A. "Jaccard/Tanimoto similarity test and estimation methods for biological presence-absence data" BMC Bioinformatics (2019) 20(Suppl 15): 644. https://doi.org/10.1186/s12859-019-3118-5
 
 # Basic Usage
 
