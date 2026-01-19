@@ -6,6 +6,22 @@ Date: 2017-09-04
 Author: Neo Christopher Chung <nchchung@gmail.com>, Błażej Miasojedow
     <bmiasojedow@gmail.com>, Michał Startek <M.Startek@mimuw.edu.pl>
 Maintainer: Neo Christopher Chung <nchchung@gmail.com>
+Authors@R: c(person(given = c("Neo", "Christopher"),
+                        family = "Chung",
+                        role = c("aut", "cre"),
+                        email = "nchchung@gmail.com"),
+                 person(given = "Błażej",
+                        family = "Miasojedow",
+                        role = "aut",
+                        email = "bmiasojedow@gmail.com"),
+                 person(given = "Michał",
+                        family = "Startek",
+                        role = "aut",
+                        email = "M.Startek@mimuw.edu.pl"),
+                 person(given = "Anna",
+                        family = "Gambin",
+                        role = "aut",
+                        email = "aniag@mimuw.edu.pl"))
 Description: Calculate statistical significance of Jaccard/Tanimoto similarity
     coefficients.
 License: GPL-2
