@@ -29,8 +29,6 @@ Encoding: UTF-8
 Imports:
     Rcpp (>= 0.12.6),
     qvalue,
-    dplyr,
-    magrittr,
     shiny
 LinkingTo: Rcpp
 NeedsCompilation: yes
