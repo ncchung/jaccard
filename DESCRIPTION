@@ -24,7 +24,7 @@ Authors@R: c(person(given = c("Neo", "Christopher"),
                         email = "aniag@mimuw.edu.pl"))
 Description: Calculate statistical significance of Jaccard/Tanimoto similarity
     coefficients.
-License: GPL-2 + file LICENSE
+License: GPL-2
 Encoding: UTF-8
 Imports:
     Rcpp (>= 0.12.6),
