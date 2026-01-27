@@ -26,7 +26,6 @@ Description: Calculate statistical significance of Jaccard/Tanimoto similarity
     coefficients.
 License: GPL-2 + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Imports:
     Rcpp (>= 0.12.6),
     qvalue,
