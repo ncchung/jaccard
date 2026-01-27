@@ -4,8 +4,7 @@
 \alias{jaccard.test}
 \title{Test for Jaccard/Tanimoto similarity coefficients}
 \usage{
-jaccard.test(x, y, method = "mca", px = NULL, py = NULL, verbose = TRUE,
-  ...)
+jaccard.test(x, y, method = "mca", px = NULL, py = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{x}{a binary vector (e.g., fingerprint)}

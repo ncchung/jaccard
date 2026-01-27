@@ -4,8 +4,15 @@
 \alias{jaccard.test.mca}
 \title{Compute p-value using the Measure Concentration Algorithm}
 \usage{
-jaccard.test.mca(x, y, px = NULL, py = NULL, accuracy = 1e-05,
-  error.type = "average", verbose = TRUE)
+jaccard.test.mca(
+  x,
+  y,
+  px = NULL,
+  py = NULL,
+  accuracy = 1e-05,
+  error.type = "average",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{x}{a binary vector (e.g., fingerprint)}

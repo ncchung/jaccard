@@ -4,8 +4,13 @@
 \alias{jaccard.test.pairwise}
 \title{Pair-wise tests for Jaccard/Tanimoto similarity coefficients}
 \usage{
-jaccard.test.pairwise(dat, method = "mca", verbose = TRUE,
-  compute.qvalue = TRUE, ...)
+jaccard.test.pairwise(
+  dat,
+  method = "mca",
+  verbose = TRUE,
+  compute.qvalue = TRUE,
+  ...
+)
 }
 \arguments{
 \item{dat}{a data matrix}
