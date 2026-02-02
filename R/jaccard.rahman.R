@@ -5,7 +5,7 @@
 #' define the z score, \eqn{z = (Tw - \mu)/\sigma}. For the purpose of calculating
 #' the P value, only hits with T > 0 are considered. The P value w
 #' is derived from the z score using an extreme value distribution 
-#' P = 1 – exp(−e−zπ/√(6) − Γ′ (1)), where the Euler-Mascheroni constant Γ′ (1) ≈ 0.577215665.
+#' \eqn{P = 1 - \exp\left(-e^{-z\pi/\sqrt{6} - \Gamma'(1)}\right)}, where the Euler-Mascheroni constant \eqn{\Gamma'(1) \approx 0.577215665}.
 #'
 #' @param j a numeric vector of observed Jaccard coefficients (uncentered)
 #' @return \code{jaccard.rahman} returns a numeric vector of p-values
