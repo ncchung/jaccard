@@ -1,6 +1,6 @@
 Package: jaccard
 Type: Package
-Title: Testing Similarity between Binary Datasets using Jaccard/Tanimoto Coefficients
+Title: Testing Similarity Between Binary Datasets using Jaccard/Tanimoto Coefficients
 Version: 0.1.1
 Date: 2026-01-19
 Author: Neo Christopher Chung <nchchung@gmail.com>, Błażej Miasojedow
