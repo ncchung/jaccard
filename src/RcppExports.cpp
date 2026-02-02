@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // jaccard_mca_rcpp
 Rcpp::List jaccard_mca_rcpp(const double px, const double py, const int m, const double T_observed, const double accuracy);
 RcppExport SEXP _jaccard_jaccard_mca_rcpp(SEXP pxSEXP, SEXP pySEXP, SEXP mSEXP, SEXP T_observedSEXP, SEXP accuracySEXP) {

@@ -2,10 +2,10 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 jaccard_mca_rcpp <- function(px, py, m, T_observed, accuracy = 1e-05) {
-    .Call('_jaccard_jaccard_mca_rcpp', PACKAGE = 'jaccard', px, py, m, T_observed, accuracy)
+    .Call(`_jaccard_jaccard_mca_rcpp`, px, py, m, T_observed, accuracy)
 }
 
 jaccard_mca_rcpp_known_p <- function(px, py, m, T_observed, accuracy = 1e-05) {
-    .Call('_jaccard_jaccard_mca_rcpp_known_p', PACKAGE = 'jaccard', px, py, m, T_observed, accuracy)
+    .Call(`_jaccard_jaccard_mca_rcpp_known_p`, px, py, m, T_observed, accuracy)
 }
 
