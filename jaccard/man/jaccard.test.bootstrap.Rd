@@ -4,8 +4,16 @@
 \alias{jaccard.test.bootstrap}
 \title{Compute p-value using the bootstrap procedure}
 \usage{
-jaccard.test.bootstrap(x, y, px = NULL, py = NULL, verbose = TRUE,
-  fix = "x", B = 1000, seed = NULL)
+jaccard.test.bootstrap(
+  x,
+  y,
+  px = NULL,
+  py = NULL,
+  verbose = TRUE,
+  fix = "x",
+  B = 1000,
+  seed = NULL
+)
 }
 \arguments{
 \item{x}{a binary vector (e.g., fingerprint)}

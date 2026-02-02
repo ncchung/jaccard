@@ -67,3 +67,7 @@ jaccard <- function(x, y, center=FALSE, px=NULL, py=NULL) {
     return(j - (px*py)/(px+py-px*py))
   }
 }
+
+#' @useDynLib jaccard, .registration = TRUE
+#' @import Rcpp
+NULL

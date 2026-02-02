@@ -8,7 +8,7 @@
 #'
 #' We recommand using either \code{mca} or \code{bootstrap} methods,
 #' since the \code{exact} solution is slow for a moderately large vector and \code{asymptotic} approximation may be inaccurate depending on the input vector size.
-#' The {bootstrap} method uses resampling with replacement binary vectors to compute a p-value (see optional arguments).
+#' The \code{bootstrap} method uses resampling with replacement binary vectors to compute a p-value (see optional arguments).
 #' The \code{mca} method uses the measure concentration algorithm that estimates the multinomial distribution with a known error bound (specified by an optional argument \code{accuracy}).
 #'
 #' @section Optional arguments for \code{method="bootstrap"}:
