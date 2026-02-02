@@ -32,7 +32,7 @@ Compute statistical significance of Jaccard/Tanimoto similarity coefficients bet
 }
 \details{
 There exist four methods to compute p-values of Jaccard/Tanimoto similarity coefficients:
-\code{mca}, \code{bootstrap}, \code{asymptotic}, and \code{exact}. This is simply a wrapper function for
+\code{mca}, \code{bootstrap}, \code{asymptotic}, and \code{exact}. This is simply a wrapper function for 
 corresponding four functions in this package: \link{jaccard.test.mca}, \link{jaccard.test.bootstrap},  \link{jaccard.test.asymptotic}, and \link{jaccard.test.exact}.
 
 We recommand using either \code{mca} or \code{bootstrap} methods,
