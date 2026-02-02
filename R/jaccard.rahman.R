@@ -1,8 +1,8 @@
 #' Compute p-value using the EC-BLAST method
 #'
 #' In the EC-BLAST paper, Rahman et al. (2014) provide the following description:
-#' The mean (μ) and s.d. (σ) of the similarity scores are used to
-#' define the z score, z = (Tw – μ)/σ. For the purpose of calculating
+#' The mean (\eqn{\mu}) and s.d. (\eqn{\sigma}) of the similarity scores are used to
+#' define the z score, \eqn{z = (Tw - \mu)/\sigma}. For the purpose of calculating
 #' the P value, only hits with T > 0 are considered. The P value w
 #' is derived from the z score using an extreme value distribution 
 #' P = 1 – exp(−e−zπ/√(6) − Γ′ (1)), where the Euler-Mascheroni constant Γ′ (1) ≈ 0.577215665.
